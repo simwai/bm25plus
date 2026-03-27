@@ -1,0 +1,37 @@
+[**bm25plus**](../README.md)
+
+***
+
+Defined in: [types/index.ts:26](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L26)
+
+Statistics required for BM25+ calculation.
+
+## Properties
+
+### avgDocLength
+
+> **avgDocLength**: `number`
+
+Defined in: [types/index.ts:30](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L30)
+
+Average document length across the index.
+
+***
+
+### docCount
+
+> **docCount**: `number`
+
+Defined in: [types/index.ts:28](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L28)
+
+Total number of documents in the index.
+
+***
+
+### termDocFreqs
+
+> **termDocFreqs**: `Map`\<`string`, `number`\>
+
+Defined in: [types/index.ts:32](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L32)
+
+Map of term to the number of documents containing that term.

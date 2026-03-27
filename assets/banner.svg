@@ -1,0 +1,24 @@
+<svg width="1200" height="400" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="400" fill="#0D0D0D"/>
+
+  <!-- Cyberpunk grid/curves -->
+  <g stroke="#A855F7" stroke-width="0.5" fill="none" opacity="0.3">
+    <path d="M 0 350 Q 300 150 600 350 T 1200 350" />
+    <path d="M 0 300 Q 300 100 600 300 T 1200 300" />
+    <path d="M 0 250 Q 300 50 600 250 T 1200 250" />
+  </g>
+
+  <!-- Sigma symbol -->
+  <text x="100" y="300" font-family="serif" font-size="200" fill="#A855F7" opacity="0.2">Σ</text>
+
+  <!-- Main Title -->
+  <text x="600" y="220" font-family="monospace" font-size="120" font-weight="bold" fill="#FFFFFF" text-anchor="middle">bm25plus</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="280" font-family="monospace" font-size="24" fill="#A855F7" text-anchor="middle" letter-spacing="8">MODERN SEARCH ALGORITHM</text>
+
+  <!-- Formula snippet -->
+  <text x="950" y="350" font-family="serif" font-size="14" fill="#A855F7" opacity="0.6">
+    Score = IDF * ( (f * (k1 + 1)) / (f + k1 * norm) + delta )
+  </text>
+</svg>

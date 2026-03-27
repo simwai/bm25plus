@@ -1,0 +1,137 @@
+import Dexie, { type Table } from "dexie";
+import type { DocumentStats, IndexStats, StorageProvider } from "../types/index.js";
+
+interface DB {
+  documents: Table<
+    {
+      id: string;
+      length: number;
+      termFreqs: [string, number][];
+      terms: string[];
+    },
+    string
+  >;
+  stats: Table<
+    {
+      key: string;
+      value: any;
+    },
+    string
+  >;
+}
+
+class BM25Database extends Dexie implements DB {
+  documents!: Table<
+    {
+      id: string;
+      length: number;
+      termFreqs: [string, number][];
+      terms: string[];
+    },
+    string
+  >;
+  stats!: Table<
+    {
+      key: string;
+      value: any;
+    },
+    string
+  >;
+
+  constructor(dbName: string) {
+    super(dbName);
+    this.version(1).stores({
+      documents: "id, *terms",
+      stats: "key",
+    });
+  }
+}
+
+/**
+ * IndexedDB storage provider using Dexie for persistence.
+ */
+export class IndexedDBProvider implements StorageProvider {
+  private db: BM25Database;
+
+  constructor(dbName = "bm25plus_db") {
+    this.db = new BM25Database(dbName);
+  }
+
+  public async saveDocument(docId: string, stats: DocumentStats): Promise<void> {
+    await this.db.transaction("rw", this.db.documents, this.db.stats, async () => {
+      const existing = await this.db.documents.get(docId);
+
+      let totalDocLength = (await this.db.stats.get("totalDocLength"))?.value || 0;
+      const termDocFreqs = (await this.db.stats.get("termDocFreqs"))?.value || {};
+
+      // If updating, subtract old stats
+      if (existing) {
+        totalDocLength -= existing.length;
+        for (const [term] of existing.termFreqs) {
+          if (termDocFreqs[term] > 0) {
+            termDocFreqs[term] -= 1;
+          }
+        }
+      }
+
+      const termFreqsArr = Array.from(stats.termFreqs.entries());
+      const terms = Array.from(stats.termFreqs.keys());
+
+      await this.db.documents.put({
+        id: docId,
+        length: stats.length,
+        termFreqs: termFreqsArr,
+        terms,
+      });
+
+      totalDocLength += stats.length;
+      for (const term of terms) {
+        termDocFreqs[term] = (termDocFreqs[term] || 0) + 1;
+      }
+
+      await this.db.stats.bulkPut([
+        { key: "totalDocLength", value: totalDocLength },
+        { key: "termDocFreqs", value: termDocFreqs },
+      ]);
+    });
+  }
+
+  public async getDocument(docId: string): Promise<DocumentStats | undefined> {
+    const doc = await this.db.documents.get(docId);
+    if (!doc) return undefined;
+    return {
+      length: doc.length,
+      termFreqs: new Map(doc.termFreqs),
+    };
+  }
+
+  public async getDocumentsContainingTerms(terms: string[]): Promise<Map<string, DocumentStats>> {
+    const documents = await this.db.documents.where("terms").anyOf(terms).toArray();
+
+    const results = new Map<string, DocumentStats>();
+    for (const doc of documents) {
+      results.set(doc.id, {
+        length: doc.length,
+        termFreqs: new Map(doc.termFreqs),
+      });
+    }
+    return results;
+  }
+
+  public async getIndexStats(): Promise<IndexStats> {
+    const docCount = await this.db.documents.count();
+    const totalDocLength = (await this.db.stats.get("totalDocLength"))?.value || 0;
+    const termDocFreqsObj = (await this.db.stats.get("termDocFreqs"))?.value || {};
+
+    return {
+      docCount,
+      avgDocLength: docCount === 0 ? 0 : totalDocLength / docCount,
+      termDocFreqs: new Map(Object.entries(termDocFreqsObj)),
+    };
+  }
+
+  public async clear(): Promise<void> {
+    await this.db.documents.clear();
+    await this.db.stats.clear();
+  }
+}

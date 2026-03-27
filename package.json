@@ -1,0 +1,52 @@
+{
+  "name": "bm25plus",
+  "version": "1.0.0",
+  "description": "A modern BM25+ search library that doesn't suck.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vitest",
+    "build": "unbuild && pnpm docs:api",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "pnpm docs:api && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:api": "typedoc",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "dexie": "latest",
+    "stopword": "latest"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@types/stopword": "^2.0.3",
+    "fake-indexeddb": "^6.2.5",
+    "husky": "latest",
+    "lint-staged": "latest",
+    "madge": "latest",
+    "typedoc": "latest",
+    "typedoc-plugin-markdown": "latest",
+    "typescript": "latest",
+    "unbuild": "latest",
+    "vite": "^6.4.1",
+    "vitepress": "latest",
+    "vitest": "latest"
+  }
+}
