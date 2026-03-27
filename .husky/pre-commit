@@ -1,0 +1,5 @@
+pnpm exec lint-staged
+# If files were modified by lint-staged, we need to add them back
+git add .
+pnpm exec madge --circular src/**
+pnpm vitest run --changed
