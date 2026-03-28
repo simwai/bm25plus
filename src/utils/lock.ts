@@ -29,7 +29,7 @@ export class AsyncLock {
     this.promise = nextPromise;
 
     await currentPromise;
-    // @ts-ignore
+    // @ts-expect-error
     return release;
   }
 }

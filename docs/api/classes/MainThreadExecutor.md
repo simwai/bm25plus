@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [worker/executor.ts:6](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/worker/executor.ts#L6)
+Defined in: [worker/executor.ts:6](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/worker/executor.ts#L6)
 
 Executes tasks on the main thread.
 
@@ -26,7 +26,7 @@ Executes tasks on the main thread.
 
 > **execute**\<`T`, `R`\>(`task`, `payload`): `Promise`\<`R`\>
 
-Defined in: [worker/executor.ts:13](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/worker/executor.ts#L13)
+Defined in: [worker/executor.ts:13](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/worker/executor.ts#L13)
 
 Executes a task.
 
@@ -64,7 +64,7 @@ Executes a task.
 
 > **registerHandler**(`task`, `handler`): `void`
 
-Defined in: [worker/executor.ts:9](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/worker/executor.ts#L9)
+Defined in: [worker/executor.ts:9](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/worker/executor.ts#L9)
 
 #### Parameters
 

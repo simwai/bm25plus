@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [index.ts:28](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/index.ts#L28)
+Defined in: [index.ts:28](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/index.ts#L28)
 
 Main entry point for the BM25+ search index.
 
@@ -15,7 +15,7 @@ delegating storage and NLP tasks to the provided strategies.
 
 > **new BM25Index**(`config?`): `BM25Index`
 
-Defined in: [index.ts:35](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/index.ts#L35)
+Defined in: [index.ts:35](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/index.ts#L35)
 
 #### Parameters
 
@@ -47,7 +47,7 @@ Defined in: [index.ts:35](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae
 
 > **addDocument**(`doc`): `Promise`\<`void`\>
 
-Defined in: [index.ts:64](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/index.ts#L64)
+Defined in: [index.ts:64](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/index.ts#L64)
 
 Adds a document to the index.
 
@@ -77,7 +77,7 @@ await index.addDocument({ id: '1', fields: { title: 'Hello World' } });
 
 > **clear**(): `Promise`\<`void`\>
 
-Defined in: [index.ts:133](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/index.ts#L133)
+Defined in: [index.ts:133](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/index.ts#L133)
 
 Clears all documents from the index.
 
@@ -91,7 +91,7 @@ Clears all documents from the index.
 
 > **search**(`query`, `limit?`): `Promise`\<`object`[]\>
 
-Defined in: [index.ts:94](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/index.ts#L94)
+Defined in: [index.ts:94](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/index.ts#L94)
 
 Searches the index for the given query.
 

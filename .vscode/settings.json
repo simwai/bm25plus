@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.defaultFormatter": "fronterior.biome-monorepo",
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit"
   },

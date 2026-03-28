@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [types/index.ts:4](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L4)
+Defined in: [types/index.ts:4](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/types/index.ts#L4)
 
 Represents a document in the index.
 
@@ -12,7 +12,7 @@ Represents a document in the index.
 
 > **fields**: `Record`\<`string`, `string`\>
 
-Defined in: [types/index.ts:6](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L6)
+Defined in: [types/index.ts:6](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/types/index.ts#L6)
 
 ***
 
@@ -20,4 +20,4 @@ Defined in: [types/index.ts:6](https://github.com/simwai/bm25plus/blob/3aff6be2a
 
 > **id**: `string`
 
-Defined in: [types/index.ts:5](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L5)
+Defined in: [types/index.ts:5](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/types/index.ts#L5)

@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [storage/memory.ts:6](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L6)
+Defined in: [storage/memory.ts:6](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L6)
 
 In-memory storage provider for fast, volatile indexing.
 
@@ -26,7 +26,7 @@ In-memory storage provider for fast, volatile indexing.
 
 > **clear**(): `Promise`\<`void`\>
 
-Defined in: [storage/memory.ts:61](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L61)
+Defined in: [storage/memory.ts:61](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L61)
 
 Clears all data from storage.
 
@@ -44,7 +44,7 @@ Clears all data from storage.
 
 > **getDocument**(`docId`): `Promise`\<[`DocumentStats`](../interfaces/DocumentStats.md) \| `undefined`\>
 
-Defined in: [storage/memory.ts:33](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L33)
+Defined in: [storage/memory.ts:33](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L33)
 
 Retrieves statistics for a specific document.
 
@@ -68,7 +68,7 @@ Retrieves statistics for a specific document.
 
 > **getDocumentsContainingTerms**(`terms`): `Promise`\<`Map`\<`string`, [`DocumentStats`](../interfaces/DocumentStats.md)\>\>
 
-Defined in: [storage/memory.ts:37](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L37)
+Defined in: [storage/memory.ts:37](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L37)
 
 Retrieves all document IDs that contain any of the given terms.
 
@@ -92,7 +92,7 @@ Retrieves all document IDs that contain any of the given terms.
 
 > **getIndexStats**(): `Promise`\<[`IndexStats`](../interfaces/IndexStats.md)\>
 
-Defined in: [storage/memory.ts:52](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L52)
+Defined in: [storage/memory.ts:52](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L52)
 
 Retrieves overall index statistics.
 
@@ -110,7 +110,7 @@ Retrieves overall index statistics.
 
 > **saveDocument**(`docId`, `stats`): `Promise`\<`void`\>
 
-Defined in: [storage/memory.ts:11](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/memory.ts#L11)
+Defined in: [storage/memory.ts:11](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/memory.ts#L11)
 
 Adds or updates a document in the storage.
 

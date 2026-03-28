@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [types/index.ts:80](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L80)
+Defined in: [types/index.ts:80](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/types/index.ts#L80)
 
 Interface for execution models (Main thread, Web Worker, etc.).
 
@@ -12,7 +12,7 @@ Interface for execution models (Main thread, Web Worker, etc.).
 
 > **execute**\<`T`, `R`\>(`task`, `payload`): `Promise`\<`R`\>
 
-Defined in: [types/index.ts:84](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/types/index.ts#L84)
+Defined in: [types/index.ts:84](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/types/index.ts#L84)
 
 Executes a task.
 

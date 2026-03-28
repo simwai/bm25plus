@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [utils/nlp.ts:20](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/utils/nlp.ts#L20)
+Defined in: [utils/nlp.ts:20](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/utils/nlp.ts#L20)
 
 Stopword filter using the 'stopword' package.
 Defaults to English stopwords.
@@ -17,7 +17,7 @@ Defaults to English stopwords.
 
 > **new EnglishStopwordFilter**(`customStopwords?`): `EnglishStopwordFilter`
 
-Defined in: [utils/nlp.ts:23](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/utils/nlp.ts#L23)
+Defined in: [utils/nlp.ts:23](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/utils/nlp.ts#L23)
 
 #### Parameters
 
@@ -35,7 +35,7 @@ Defined in: [utils/nlp.ts:23](https://github.com/simwai/bm25plus/blob/3aff6be2a2
 
 > **filter**(`tokens`): `string`[]
 
-Defined in: [utils/nlp.ts:27](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/utils/nlp.ts#L27)
+Defined in: [utils/nlp.ts:27](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/utils/nlp.ts#L27)
 
 #### Parameters
 

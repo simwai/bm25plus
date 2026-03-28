@@ -4,7 +4,7 @@
 
 > **calculateBM25PlusScore**(`f`, `docLength`, `avgDocLength`, `docCount`, `termDocFreq`, `options`): `number`
 
-Defined in: [utils/scorer.ts:16](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/utils/scorer.ts#L16)
+Defined in: [utils/scorer.ts:16](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/utils/scorer.ts#L16)
 
 Calculates the BM25+ score for a term within a document.
 

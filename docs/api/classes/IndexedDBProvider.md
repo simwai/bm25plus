@@ -2,7 +2,7 @@
 
 ***
 
-Defined in: [storage/indexeddb.ts:53](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L53)
+Defined in: [storage/indexeddb.ts:53](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L53)
 
 IndexedDB storage provider using Dexie for persistence.
 
@@ -16,7 +16,7 @@ IndexedDB storage provider using Dexie for persistence.
 
 > **new IndexedDBProvider**(`dbName?`): `IndexedDBProvider`
 
-Defined in: [storage/indexeddb.ts:56](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L56)
+Defined in: [storage/indexeddb.ts:56](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L56)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [storage/indexeddb.ts:56](https://github.com/simwai/bm25plus/blob/3a
 
 > **clear**(): `Promise`\<`void`\>
 
-Defined in: [storage/indexeddb.ts:133](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L133)
+Defined in: [storage/indexeddb.ts:133](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L133)
 
 Clears all data from storage.
 
@@ -52,7 +52,7 @@ Clears all data from storage.
 
 > **getDocument**(`docId`): `Promise`\<[`DocumentStats`](../interfaces/DocumentStats.md) \| `undefined`\>
 
-Defined in: [storage/indexeddb.ts:99](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L99)
+Defined in: [storage/indexeddb.ts:99](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L99)
 
 Retrieves statistics for a specific document.
 
@@ -76,7 +76,7 @@ Retrieves statistics for a specific document.
 
 > **getDocumentsContainingTerms**(`terms`): `Promise`\<`Map`\<`string`, [`DocumentStats`](../interfaces/DocumentStats.md)\>\>
 
-Defined in: [storage/indexeddb.ts:108](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L108)
+Defined in: [storage/indexeddb.ts:108](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L108)
 
 Retrieves all document IDs that contain any of the given terms.
 
@@ -100,7 +100,7 @@ Retrieves all document IDs that contain any of the given terms.
 
 > **getIndexStats**(): `Promise`\<[`IndexStats`](../interfaces/IndexStats.md)\>
 
-Defined in: [storage/indexeddb.ts:121](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L121)
+Defined in: [storage/indexeddb.ts:121](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L121)
 
 Retrieves overall index statistics.
 
@@ -118,7 +118,7 @@ Retrieves overall index statistics.
 
 > **saveDocument**(`docId`, `stats`): `Promise`\<`void`\>
 
-Defined in: [storage/indexeddb.ts:60](https://github.com/simwai/bm25plus/blob/3aff6be2a23dae656d3f69f583ec6ec4115ba430/src/storage/indexeddb.ts#L60)
+Defined in: [storage/indexeddb.ts:60](https://github.com/simwai/bm25plus/blob/f31dd3b649087c2d0891ca541792c06efa6459e8/src/storage/indexeddb.ts#L60)
 
 Adds or updates a document in the storage.
 
