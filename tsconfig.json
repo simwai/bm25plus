@@ -1,9 +1,8 @@
 {
   "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "target": "ESNext",
+    "module": "nodenext",
+    "target": "es2022",
     "strict": true,
     "declaration": true,
     "declarationMap": true,
@@ -11,13 +10,9 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "baseUrl": ".",
     "lib": ["ESNext", "DOM", "WebWorker"],
     "incremental": true,
-    "isolatedModules": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "isolatedModules": true
   },
   "include": ["src", "tests"]
 }

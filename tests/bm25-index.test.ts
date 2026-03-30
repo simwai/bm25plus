@@ -16,20 +16,22 @@ describe('BM25Index', () => {
 
     const results = await index.search('quick fox')
     expect(results).toHaveLength(2)
-    expect(results[0].id).toBe('1') // 'quick fox' appears in 1 and 3. Wait, let's check scores.
-    // 1: 'quick', 'brown', 'fox'
-    // 3: 'quick', 'lazy', 'fox'
-    // Both should have same score for 'quick fox'.
-    expect(['1', '3']).toContain(results[0].id)
-    expect(['1', '3']).toContain(results[1].id)
+
+    // After the length assertion, non-null assertion is safe
+    expect(['1', '3']).toContain(results[0]!.id)
+    expect(['1', '3']).toContain(results[1]!.id)
   })
 
   it('should rank more relevant documents higher', async () => {
     await index.addDocument({ id: '1', fields: { content: 'the quick brown fox' } })
-    await index.addDocument({ id: '2', fields: { content: 'the quick quick brown fox' } })
+    await index.addDocument({
+      id: '2',
+      fields: { content: 'the quick quick brown fox' },
+    })
 
     const results = await index.search('quick')
-    expect(results[0].id).toBe('2')
+    expect(results).not.toHaveLength(0)
+    expect(results[0]!.id).toBe('2')
   })
 
   it('should handle updates to documents', async () => {
@@ -42,14 +44,17 @@ describe('BM25Index', () => {
     expect(resultsApple).toHaveLength(0)
 
     const resultsBanana = await index.search('banana')
-    expect(resultsBanana[0].id).toBe('1')
+    expect(resultsBanana).toHaveLength(1)
+    expect(resultsBanana[0]!.id).toBe('1')
   })
 
   it('should work with default settings (MemoryProvider)', async () => {
     const defaultIndex = new BM25Index()
     await defaultIndex.addDocument({ id: '1', fields: { text: 'test' } })
+
     const results = await defaultIndex.search('test')
-    expect(results[0].id).toBe('1')
+    expect(results).toHaveLength(1)
+    expect(results[0]!.id).toBe('1')
   })
 
   it('should return empty results for unknown terms', async () => {

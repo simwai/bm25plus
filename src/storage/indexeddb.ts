@@ -1,5 +1,12 @@
-import Dexie, { type Table } from 'dexie'
+import { Dexie, type EntityTable } from 'dexie'
 import type { DocumentStats, IndexStats, StorageProvider } from '../types/index.js'
+
+interface DocumentRow {
+  id: string
+  length: number
+  termFreqs: [string, number][]
+  terms: string[]
+}
 
 interface TotalDocLengthEntry {
   key: 'totalDocLength'
@@ -13,38 +20,20 @@ interface TermDocFreqsEntry {
 
 type StatsEntry = TotalDocLengthEntry | TermDocFreqsEntry
 
-interface DB {
-  documents: Table<
-    {
-      id: string
-      length: number
-      termFreqs: [string, number][]
-      terms: string[]
-    },
-    string
-  >
-  stats: Table<StatsEntry, string>
+type BM25Database = Dexie & {
+  documents: EntityTable<DocumentRow, 'id'>
+  stats: EntityTable<StatsEntry, 'key'>
 }
 
-class BM25Database extends Dexie implements DB {
-  documents!: Table<
-    {
-      id: string
-      length: number
-      termFreqs: [string, number][]
-      terms: string[]
-    },
-    string
-  >
-  stats!: Table<StatsEntry, string>
+function createDatabase(dbName: string): BM25Database {
+  const db = new Dexie(dbName) as BM25Database
 
-  constructor(dbName: string) {
-    super(dbName)
-    this.version(1).stores({
-      documents: 'id, *terms',
-      stats: 'key',
-    })
-  }
+  db.version(1).stores({
+    documents: 'id, *terms',
+    stats: 'key',
+  })
+
+  return db
 }
 
 /**
@@ -54,7 +43,7 @@ export class IndexedDBProvider implements StorageProvider {
   private db: BM25Database
 
   constructor(dbName = 'bm25plus_db') {
-    this.db = new BM25Database(dbName)
+    this.db = createDatabase(dbName)
   }
 
   public async saveDocument(docId: string, stats: DocumentStats): Promise<void> {
@@ -72,8 +61,9 @@ export class IndexedDBProvider implements StorageProvider {
       if (existing) {
         totalDocLength -= existing.length
         for (const [term] of existing.termFreqs) {
-          if (termDocFreqs[term] > 0) {
-            termDocFreqs[term] -= 1
+          const count = termDocFreqs[term] ?? 0
+          if (count > 0) {
+            termDocFreqs[term] = count - 1
           }
         }
       }
@@ -90,7 +80,7 @@ export class IndexedDBProvider implements StorageProvider {
 
       totalDocLength += stats.length
       for (const term of terms) {
-        termDocFreqs[term] = (termDocFreqs[term] || 0) + 1
+        termDocFreqs[term] = (termDocFreqs[term] ?? 0) + 1
       }
 
       await this.db.stats.bulkPut([
@@ -113,7 +103,6 @@ export class IndexedDBProvider implements StorageProvider {
 
   public async getDocumentsContainingTerms(terms: string[]): Promise<Map<string, DocumentStats>> {
     const documents = await this.db.documents.where('terms').anyOf(terms).toArray()
-
     const results = new Map<string, DocumentStats>()
     for (const doc of documents) {
       results.set(doc.id, {
