@@ -1,8 +1,3 @@
 {
-  "recommendations": [
-    "biomejs.biome",
-    "vitest.explorer",
-    "vue.volar",
-    "streetsidesoftware.code-spell-checker"
-  ]
+  "recommendations": ["vitest.explorer", "fronterior.biome-monorepo"]
 }

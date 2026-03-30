@@ -1,6 +1,18 @@
 import Dexie, { type Table } from 'dexie'
 import type { DocumentStats, IndexStats, StorageProvider } from '../types/index.js'
 
+interface TotalDocLengthEntry {
+  key: 'totalDocLength'
+  value: number
+}
+
+interface TermDocFreqsEntry {
+  key: 'termDocFreqs'
+  value: Record<string, number>
+}
+
+type StatsEntry = TotalDocLengthEntry | TermDocFreqsEntry
+
 interface DB {
   documents: Table<
     {
@@ -11,13 +23,7 @@ interface DB {
     },
     string
   >
-  stats: Table<
-    {
-      key: string
-      value: any
-    },
-    string
-  >
+  stats: Table<StatsEntry, string>
 }
 
 class BM25Database extends Dexie implements DB {
@@ -30,13 +36,7 @@ class BM25Database extends Dexie implements DB {
     },
     string
   >
-  stats!: Table<
-    {
-      key: string
-      value: any
-    },
-    string
-  >
+  stats!: Table<StatsEntry, string>
 
   constructor(dbName: string) {
     super(dbName)
@@ -61,8 +61,12 @@ export class IndexedDBProvider implements StorageProvider {
     await this.db.transaction('rw', this.db.documents, this.db.stats, async () => {
       const existing = await this.db.documents.get(docId)
 
-      let totalDocLength = (await this.db.stats.get('totalDocLength'))?.value || 0
-      const termDocFreqs = (await this.db.stats.get('termDocFreqs'))?.value || {}
+      const totalDocLengthEntry = await this.db.stats.get('totalDocLength')
+      let totalDocLength =
+        totalDocLengthEntry?.key === 'totalDocLength' ? totalDocLengthEntry.value : 0
+
+      const termDocFreqsEntry = await this.db.stats.get('termDocFreqs')
+      const termDocFreqs = termDocFreqsEntry?.key === 'termDocFreqs' ? termDocFreqsEntry.value : {}
 
       // If updating, subtract old stats
       if (existing) {
@@ -98,7 +102,9 @@ export class IndexedDBProvider implements StorageProvider {
 
   public async getDocument(docId: string): Promise<DocumentStats | undefined> {
     const doc = await this.db.documents.get(docId)
-    if (!doc) return undefined
+    if (!doc) {
+      return undefined
+    }
     return {
       length: doc.length,
       termFreqs: new Map(doc.termFreqs),
@@ -120,8 +126,12 @@ export class IndexedDBProvider implements StorageProvider {
 
   public async getIndexStats(): Promise<IndexStats> {
     const docCount = await this.db.documents.count()
-    const totalDocLength = (await this.db.stats.get('totalDocLength'))?.value || 0
-    const termDocFreqsObj = (await this.db.stats.get('termDocFreqs'))?.value || {}
+    const totalDocLengthEntry = await this.db.stats.get('totalDocLength')
+    const totalDocLength =
+      totalDocLengthEntry?.key === 'totalDocLength' ? totalDocLengthEntry.value : 0
+
+    const termDocFreqsEntry = await this.db.stats.get('termDocFreqs')
+    const termDocFreqsObj = termDocFreqsEntry?.key === 'termDocFreqs' ? termDocFreqsEntry.value : {}
 
     return {
       docCount,

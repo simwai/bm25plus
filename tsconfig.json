@@ -1,8 +1,9 @@
 {
+  "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "target": "ESNext",
     "strict": true,
     "declaration": true,
     "declarationMap": true,
@@ -11,14 +12,12 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "baseUrl": ".",
+    "lib": ["ESNext", "DOM", "WebWorker"],
+    "incremental": true,
+    "isolatedModules": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src",
-    "tests"
-  ]
+  "include": ["src", "tests"]
 }

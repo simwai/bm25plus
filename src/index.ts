@@ -19,11 +19,15 @@ import { AsyncLock } from './utils/lock.js'
 import { DefaultTokenizer, EnglishStopwordFilter } from './utils/nlp.js'
 import { calculateBM25PlusScore } from './utils/scorer.js'
 
+export interface BM25Config {
+  storage?: StorageProvider
+  tokenizer?: Tokenizer
+  stopwordFilter?: StopwordFilter
+  options?: BM25Options
+}
+
 /**
  * Main entry point for the BM25+ search index.
- *
- * This class orchestrates the indexing and searching process,
- * delegating storage and NLP tasks to the provided strategies.
  */
 export class BM25Index {
   private storage: StorageProvider
@@ -32,14 +36,7 @@ export class BM25Index {
   private lock = new AsyncLock()
   private options: Required<BM25Options>
 
-  constructor(
-    config: {
-      storage?: StorageProvider
-      tokenizer?: Tokenizer
-      stopwordFilter?: StopwordFilter
-      options?: BM25Options
-    } = {},
-  ) {
+  constructor(config: BM25Config = {}) {
     this.storage = config.storage || new MemoryProvider()
     this.tokenizer = config.tokenizer || new DefaultTokenizer()
     this.stopwordFilter = config.stopwordFilter || new EnglishStopwordFilter()
@@ -50,17 +47,6 @@ export class BM25Index {
     }
   }
 
-  /**
-   * Adds a document to the index.
-   *
-   * @remarks
-   * This operation is thread-safe. If the document ID exists, it will be updated.
-   *
-   * @example
-   * ```ts
-   * await index.addDocument({ id: '1', fields: { title: 'Hello World' } });
-   * ```
-   */
   public async addDocument(doc: Document): Promise<void> {
     const release = await this.lock.acquire()
     try {
@@ -84,24 +70,23 @@ export class BM25Index {
     }
   }
 
-  /**
-   * Searches the index for the given query.
-   *
-   * @param query - The search query string.
-   * @param limit - Maximum number of results to return.
-   * @returns Array of document IDs and their scores, sorted by score descending.
-   */
   public async search(query: string, limit = 10): Promise<{ id: string; score: number }[]> {
     const tokens = this.tokenizer.tokenize(query)
     const filteredQueryTokens = this.stopwordFilter.filter(tokens)
 
-    if (filteredQueryTokens.length === 0) return []
+    if (filteredQueryTokens.length === 0) {
+      return []
+    }
 
     const indexStats = await this.storage.getIndexStats()
-    if (indexStats.docCount === 0) return []
+    if (indexStats.docCount === 0) {
+      return []
+    }
 
     const candidateDocs = await this.storage.getDocumentsContainingTerms(filteredQueryTokens)
-    if (candidateDocs.size === 0) return []
+    if (candidateDocs.size === 0) {
+      return []
+    }
 
     const results: { id: string; score: number }[] = []
 
@@ -127,9 +112,6 @@ export class BM25Index {
     return results.sort((a, b) => b.score - a.score).slice(0, limit)
   }
 
-  /**
-   * Clears all documents from the index.
-   */
   public async clear(): Promise<void> {
     const release = await this.lock.acquire()
     try {

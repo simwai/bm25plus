@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: any is easier right now */
 import type { Executor } from '../types/index.js'
 
 /**

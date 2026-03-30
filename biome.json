@@ -6,8 +6,8 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
-    "includes": ["**/*.{js,ts,jsx,tsx}", "!**/node_modules", "!**/dist"]
+    "ignoreUnknown": true,
+    "includes": ["**/*.{js,ts,jsx,tsx,json,jsonc,yml,yaml,md}", "!**/node_modules", "!**/dist"]
   },
   "formatter": {
     "enabled": true,
@@ -35,7 +35,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "warn"
+      }
     }
   },
   "overrides": [
