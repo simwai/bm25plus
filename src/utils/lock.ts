@@ -4,7 +4,7 @@
  * Useful for ensuring write operations are performed sequentially.
  */
 export class AsyncLock {
-  private promise: Promise<void> = Promise.resolve();
+  private promise: Promise<void> = Promise.resolve()
 
   /**
    * Acquires the lock. Resolves when the lock is available.
@@ -20,16 +20,16 @@ export class AsyncLock {
    * ```
    */
   public async acquire(): Promise<() => void> {
-    let release: (value: void | PromiseLike<void>) => void;
+    let release: (value: void | PromiseLike<void>) => void
     const nextPromise = new Promise<void>((resolve) => {
-      release = resolve;
-    });
+      release = resolve
+    })
 
-    const currentPromise = this.promise;
-    this.promise = nextPromise;
+    const currentPromise = this.promise
+    this.promise = nextPromise
 
-    await currentPromise;
+    await currentPromise
     // @ts-expect-error
-    return release;
+    return release
   }
 }

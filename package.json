@@ -33,7 +33,7 @@
     "stopword": "latest"
   },
   "devDependencies": {
-    "@biomejs/biome": "latest",
+    "@biomejs/biome": "2.3.11",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@types/stopword": "^2.0.3",
