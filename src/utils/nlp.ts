@@ -1,5 +1,5 @@
-import { eng, removeStopwords } from "stopword";
-import type { StopwordFilter, Tokenizer } from "../types/index.js";
+import { eng, removeStopwords } from 'stopword'
+import type { StopwordFilter, Tokenizer } from '../types/index.js'
 
 /**
  * Default tokenizer that splits text into alphanumeric tokens and converts to lowercase.
@@ -9,7 +9,7 @@ export class DefaultTokenizer implements Tokenizer {
     return text
       .toLowerCase()
       .split(/[^a-z0-9]+/)
-      .filter((token) => token.length > 0);
+      .filter((token) => token.length > 0)
   }
 }
 
@@ -18,13 +18,13 @@ export class DefaultTokenizer implements Tokenizer {
  * Defaults to English stopwords.
  */
 export class EnglishStopwordFilter implements StopwordFilter {
-  private stopwords: string[];
+  private stopwords: string[]
 
   constructor(customStopwords?: string[]) {
-    this.stopwords = customStopwords || eng;
+    this.stopwords = customStopwords || eng
   }
 
   public filter(tokens: string[]): string[] {
-    return removeStopwords(tokens, this.stopwords);
+    return removeStopwords(tokens, this.stopwords)
   }
 }

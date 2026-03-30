@@ -1,4 +1,4 @@
-import type { BM25Options } from "../types/index.js";
+import type { BM25Options } from '../types/index.js'
 
 /**
  * Calculates the BM25+ score for a term within a document.
@@ -21,17 +21,17 @@ export function calculateBM25PlusScore(
   termDocFreq: number,
   options: Required<BM25Options>,
 ): number {
-  const { k1, b, delta } = options;
+  const { k1, b, delta } = options
 
   // Calculate IDF: log((N - n + 0.5) / (n + 0.5) + 1)
   // This version avoids negative values.
-  const idf = Math.log((docCount - termDocFreq + 0.5) / (termDocFreq + 0.5) + 1);
+  const idf = Math.log((docCount - termDocFreq + 0.5) / (termDocFreq + 0.5) + 1)
 
   // Normalization factor
-  const norm = 1 - b + b * (docLength / avgDocLength);
+  const norm = 1 - b + b * (docLength / avgDocLength)
 
   // Term frequency component
-  const tf = (f * (k1 + 1)) / (f + k1 * norm);
+  const tf = (f * (k1 + 1)) / (f + k1 * norm)
 
-  return idf * (tf + delta);
+  return idf * (tf + delta)
 }
