@@ -1,3 +1,4 @@
+export * from './storage/sqlite.js'
 export * from './storage/indexeddb.js'
 export * from './storage/memory.js'
 export * from './types/index.js'
