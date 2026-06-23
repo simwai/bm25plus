@@ -34,8 +34,7 @@ console.log(results); // [{ id: '1', score: 2.14... }]
 If you need your index to persist across page reloads, use the `IndexedDBProvider`:
 
 ```typescript
-import { BM25Index } from 'bm25plus';
-import { IndexedDBProvider } from 'bm25plus/storage/indexeddb';
+import { BM25Index, IndexedDBProvider } from 'bm25plus';
 
 const storage = new IndexedDBProvider('my_search_index');
 const index = new BM25Index({ storage });
@@ -48,12 +47,12 @@ const index = new BM25Index({ storage });
 For larger indices, we recommend running the search logic in a Web Worker to keep the UI responsive.
 
 ```typescript
-import { WorkerExecutor } from 'bm25plus/worker';
+import { WorkerExecutor } from 'bm25plus';
 
 const executor = new WorkerExecutor('/worker.js');
 
 // Initialize the worker index
-await executor.execute('init', { storage: 'indexeddb' });
+await executor.execute('init', {});
 
 // Add documents from the main thread
 await executor.execute('addDocument', { id: '1', fields: { ... } });
