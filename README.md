@@ -8,7 +8,7 @@
 
 Listen, searching shouldn't be a chore. It shouldn't lock up your main thread, it shouldn't be a black box, and it definitely shouldn't be slow. We've built **`bm25plus`** because we believe in search for humans—fast, typed, and respectul of your user's experience.
 
-Why BM25+? Because standard BM25 can be a bit of a bully to long documents. BM25+ fixes that with a simple `delta` parameter that levels the playing field. It's the search algorithm you deserve, implemented in a way that makes sense in 2024.
+Why BM25+? Because standard BM25 can be a bit of a bully to long documents. BM25+ fixes that with a simple `delta` parameter that levels the playing field. It's the search algorithm you deserve, implemented in a way that makes sense in 2026.
 
 ---
 
@@ -45,7 +45,7 @@ console.log(results); // [{ id: '1', score: 2.14... }]
 
 ## 📚 Documentation
 
-Dive deeper into our [Guide](./docs/guide/index.md) or explore the [API Reference](./docs/api/index.md).
+Dive deeper into our [Guide](./docs/guide/index.md) or explore the [API Reference](./docs/api/README.md).
 
 ---
 

@@ -25,6 +25,6 @@ features:
 
 ## Why BM25+?
 
-Standard BM25 can be a bit of a bully to long documents. **bm25plus** fixes that with a simple `delta` parameter that levels the playing field. It's the search algorithm you deserve, implemented in a way that makes sense in 2024.
+Standard BM25 can be a bit of a bully to long documents. **bm25plus** fixes that with a simple `delta` parameter that levels the playing field. It's the search algorithm you deserve, implemented in a way that makes sense in 2026.
 
 [Quick Start Guide](/guide/) | [Read the README](https://github.com/simwai/bm25plus)
